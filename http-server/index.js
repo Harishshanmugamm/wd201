@@ -44,29 +44,24 @@ let homepage = "";
 let projectpage = "";
 let regpage = "";
 
-fs.readFile("home.html", (err, home) => {
-  if (err) {
-    throw err;
-  }
-  homepage = home;
+fs.readFile("home.html", (err, h) => {
+  if (err) throw err;
+  
+  homepage = h;
 });
 
-fs.readFile("project.html", (err, project) => {
-  if (err) {
-    throw err;
-  }
-  projectpage = project;
+fs.readFile("project.html", (err, pro) => {
+  if (err)  throw err;
+  
+  projectpage = pro;
 });
 fs.readFile("registration.html", (err, registration) => {
-  if (err) {
-    throw err;
-  }
+  if (err) throw err;
   regpage = registration;
 });
-fs.readFile("home.html", (err, home) => {
-  if (err) {
-    throw err;
-  }
+fs.readFile("home.html", (err, h) => {
+  if (err) throw err;
+
   
 http
   .createServer((req, res) => {
