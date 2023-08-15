@@ -59,10 +59,7 @@ fs.readFile("registration.html", (err, registration) => {
   if (err) throw err;
   regpage = registration;
 });
-fs.readFile("home.html", (err, h) => {
-  if (err) throw err;
 
-  
 http
   .createServer((req, res) => {
     let link = req.url;
@@ -82,4 +79,3 @@ http
         break;
     }
   }).listen(portno.port);
-});
