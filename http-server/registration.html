@@ -2,22 +2,238 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Registration Form </title>
+    <style>
+body{
+    width: 100%;
+    min-height: 100vh;
+    justify-content: center;
+    align-items: center;
+}
+* {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+    font-family: "Poppins", sans-serif;
+  }
+  body {
+    background-color: #f1eef1;
+  }
+  .container {
+    width: 500px;
+    height: 600px; 
+    background-color: #f8f8f8;
+    padding: 0.0em 3.20em;
+    position: absolute;
+    transform: translate(-50%, -50%);
+    top: 50%;
+    left: 50%;
+    border-radius: 0.7em;
+    box-shadow: 0 1em 4em rgba(71, 50, 4, 0.3);
+  }
+  h2{
+    text-align: center;
+    font-size: 19px;
+    margin-bottom: 30px;
+    color: rgb(14, 15, 15);
+  }
+  input,
+  #submit {
+    border: none;
+    outline: none;
+    display: block;
+  }
+  input {
+    width: 100%;
+    background-color: transparent;
+    margin-bottom: 2em;
+    font-size: 20px;
+    padding: 0.0em 0 0.0em 0.0em;
+    border-bottom: 2px solid #202020;
+  }
+  #submit {
+    position: relative;
+    left: 0;
+    font-size: 1.1em;
+    width: 7em;
+    background-color: #131314;
+    color: white;
+    padding: 0.1em 0;
+    margin-top: 2em;
+    border-radius: 0.3em;
+  }
+  #message-ref {
+    font-size: 0.9em;
+    margin-top: 1.5em;
+    color: #121212;
+    visibility: hidden;
+  }
+  input.flx
+  {
+    padding: 0%;
+    left: 20%;
+  }
+  table, th, td {
+  border: 1px solid;
+}
+  
+    </style>
 </head>
 <body>
-    <form>
-        <p>Reg Form</p>
-        <div class="input-group">
-            <input type="email" placeholder="Email"  required>
-        </div>
-        <div class="input-group">
-            <input type="text" placeholder="Write your words" required>
-        </div>
+    <body>
+        <div class="container">
+        <div id="form">
+          <h1 style="text-align-last: center;">Registration Form </h1>
+          <form action="reg-form" id="reg-form">
+              
+             <b> <label for="name">Name</label><br></b>
+              <input type="text" id="name" placeholder="Joe BIden" required autofocus title="Please enter your name in Registration form">
+          <br>
+              
+                <b> <label for="email">Email</label><br></b>
+                  <input type="email" id="email" placeholder="xyz@mmtech.com"  pattern="[a-zA-Z0-9!#$%&amp;'*+\/=?^_`{|}~.-]+@[a-zA-Z0-9-]+(\.[a-zA-Z0-9-]+)*" required autofocus title="Please enter email id in Registration form">
+           <br>       
+                  
+                     <b> <label for="password">Password</label><br></b>
+                      <input type="password" id="password" placeholder="************" required autofocus title="Please enter email id in Registration form">
+                      
+               <br>       
+                          <b> <label for="dob">Date Of Birth</label><br></b>
+                           <input type="date" id="dob"  required autofocus title="Please enter email id in Registration form">
+       <input type="checkbox" id="check" class="flx"><p for="check">Accept the Terms and Conditions</p>
+                  
+               <br>   
+                      <button class="submit" type="submit"  autofocus>Submit Form</button>
+                  
+          </form></div>
+          <ul>
+          <li>Must be at least 6 characters long.</li>
+        <li>  Must contain one uppercase letter.</li>
+        <li>  Must contain a number or special character.</li>
+            </ul>
+      
+   
         
-    </form>
-    <button><a href="/home">Return Back to Home</a></button>
-    <button><a href="/project">Return Back to out project</a></button>
+      
+<div id="x-data"></div>
 
+
+
+    
+  </div>  
+  <script>
+    let recieve = () => {
+      let values = localStorage.getItem("user-data");
+      if (values) {
+        values = JSON.parse(values);
+      } else {
+        values = [];
+      }
+      return values;
+    };
+    
+    let data = recieve();
+    
+    let disp = () => {
+      const values = recieve();
+      let tablevel = values
+        .map((valx) => {
+          let namet = `<td>${valx.name}</td>`;
+          let emailt = `<td>${valx.mail}</td>`;
+          let passwdt = `<td>${valx.passwd}</td>`;
+          let dateofbirtht = `<td>${valx.dateofbirth}</td>`;
+          let termsandcondt = `<td>${valx.termsandcond}</td>`;
+          let row = `<tr>${namet} ${emailt} ${passwdt} ${dateofbirtht} ${termsandcondt}</tr>`;
+          return row;
+        })
+        .join("\n");
+    
+      let table = `<table>
+            <tr>
+                <th>Name</th>
+                <th>Email</th>
+                <th>Password</th>
+                <th>Dob</th>
+                <th>Accepted Terms?</th>
+            </tr>${tablevel}
+        </table>`;
+      let det = document.getElementById("x-data");
+      det.innerHTML = table;
+    };
+    
+    let checkage = (valueofage) => {
+      let x;
+      if (valueofage >= 18 && valueofage <= 55) {
+        x = true;
+      } else {
+        alert("You are not in valid age it ranges between 15 to 55");
+        x = false;
+      }
+      return x;
+    };
+    
+    let mustcheck = (passwd) => {
+      let letters = /^[A-Z]+$/;
+      let num = /^[0-9]+$/;
+      let sym = /^[!@#$%^&*()_+\-=\[\]{};':"\\|,.<>\/?]*$/;
+      let x;
+    
+      if (passwd.length < 6) {
+        alert("It should contain more than 6 characters");
+        x = false;
+      }
+      if (passwd.length > 6) {
+        if (passwd.match(letters)) {
+          alert("It should contain any Uppercase letter");
+          x = false;
+        } else if (passwd.match(num) | passwd.match(sym)) {
+          alert("It should contain any number or special character");
+          x = false;
+        } else {
+          x = true;
+        }
+        return x;
+      }
+    };
+    
+    let form = document.getElementById("form");
+    
+    let savedata = (op) => {
+      op.preventDefault();
+      let name = document.getElementById("name").value;
+      let mail = document.getElementById("email").value;
+      let passwd = document.getElementById("password").value;
+      let dateofbirth = document.getElementById("dob").value;
+      let termsandcond = document.getElementById("check").checked;
+    
+      //age validation
+      let d = new Date(dateofbirth);
+      let time = Date.now() - d.getTime();
+      let age = new Date(time);
+      let tval = Math.abs(age.getUTCFullYear() - 1970);
+      let m = mustcheck(passwd);
+      let cage = checkage(tval);
+    
+      if (m === true && cage === true) {
+        const valx = {
+          name,
+          mail,
+          passwd,
+          dateofbirth,
+          termsandcond,
+        };
+        data.push(valx);
+        localStorage.setItem("user-data", JSON.stringify(data));
+        disp();
+      }
+    };
+    
+    form.addEventListener("submit", savedata);
+    disp();
+    
+    </script>
+  <a href="/">Return Back to Home</a>
 </body>
 </html>
