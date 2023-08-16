@@ -27,7 +27,7 @@ fs.readFile("registration.html", (err, registration) => {
 http
   .createServer((req, res) => {
     let link = req.url;
-    res.writeHeader(600, { "Content-type": "text/html" });
+    res.writeHeader(200, { "Content-type": "text/html" });
     switch (link) {
       case "/project":
         res.write(projectpage);
