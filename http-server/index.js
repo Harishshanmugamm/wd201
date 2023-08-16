@@ -37,7 +37,8 @@ done.question("Provide me your name is ",(name)=>{
 
 const http = require("http");
 const fs = require("fs");
-const portno = require('minimist')(process.argv.slice(2));
+const z = require("minimist");
+const fmz=z(process.argv.slice(2))
 
 
 let homepage = "";
@@ -78,4 +79,5 @@ http
         res.end();
         break;
     }
-  }).listen(portno.port);
+  }).listen(fmz.port);
+
