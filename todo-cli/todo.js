@@ -62,7 +62,7 @@ const todoList = () => {
           ddt=disp.dueDate;
         } 
         else {
-          ddt = "[ ] "
+          ddt = " "
 
         }
       
