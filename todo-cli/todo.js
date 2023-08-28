@@ -26,27 +26,21 @@ const todoList = () => {
       // Write the date check condition here and return the array
       // of overdue items accordingly.
       let x=today
-      return  all.filter((od)=>{
-        od.dueDate<x
-      })
+      return  all.filter((od)=>{od.dueDate<x)
     }
   
     const dueToday = () => {
       // Write the date check condition here and return the array
       // of todo items that are due today accordingly.
       let y=today
-      return  all.filter((dt)=>{
-        dt.dueDate===y
-      })
+      return  all.filter((dt)=>dt.dueDate===y)
     }
   
     const dueLater = () => {
       // Write the date check condition here and return the array
       // of todo items that are due later accordingly.
       let z=today
-      return  all.filter((dl)=>{
-        dl.dueDate>z
-      })
+      return  all.filter((dl)=>{dl.dueDate>z)
     }
   
     const toDisplayableList = (list) => {
@@ -72,7 +66,7 @@ const todoList = () => {
           ddt = " "
         }
       
-        return res,ddt
+        return  `${res} ${ddt}`
     }).join("\n")
     }
   
