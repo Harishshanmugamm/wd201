@@ -13,81 +13,79 @@ Due Later
 [ ] File taxes 2022-07-23
 [ ] Pay electric bill 2022-07-23
 */
+/* eslint-disable no-undef */
 const todoList = () => {
-    all = []
-    const add = (todoItem) => {
-      all.push(todoItem)
-    }
-    const markAsComplete = (index) => {
-      all[index].completed = true
-    }
+  all = []
+  const add = (todoItem) => {
+    all.push(todoItem);
+  };
+  const markAsComplete = (index) => {
+    all[index].completed = true;
+  };
+
+  const overdue = () => {
+    // Write the date check condition here and return the array
+    // of overdue items accordingly.
+    const x = new Date();
+    return all.filter((od) => {
+      new Date(od.dueDate) < x
+    });
+  };
+
+  const dueToday = () => {
+    // Write the date check condition here and return the array
+    // of todo items that are due today accordingly.
+    const y = new Date();
+    return all.filter((dt) => {
+      new Date(dt.dueDate) === y;
+    });
+  };
+
+  const dueLater = () => {
+    // Write the date check condition here and return the array
+    // of todo items that are due later accordingly.
+    const z = new Date();
+    return all.filter((dl) => {
+      new Date(dl.dueDate) > z;
+    });
+  };
+
   
-    const overdue = () => {
-      // Write the date check condition here and return the array
-      // of overdue items accordingly.
-          return  all.filter((od)=>{
-        od.dueDate< new Date().toISOString()
-      })
-    }
-  
-    const dueToday = () => {
-      // Write the date check condition here and return the array
-      // of todo items that are due today accordingly.
-    
-      return  all.filter((dt)=>{
-        dt.dueDate===new Date().toISOString()
-      })
-    }
-  
-    const dueLater = () => {
-      // Write the date check condition here and return the array
-      // of todo items that are due later accordingly.
-      
-      return  all.filter((dl)=>{
-        dl.dueDate>new Date().toISOString()
-      })
-    }
-  
-    const toDisplayableList = (list) => {
-      // Format the To-Do list here, and return the output string
-      // as per the format given above.
-      return list.map((disp)=>{
-      
-        let res, ddt
-      if (disp.completed)
-      { 
+
+
+  const toDisplayableList = (list) => {
+    // Format the To-Do list here, and return the output string
+    // as per the format given above.
+    return list
+      .map((disp) => {
+        let res, ddt;
+        if (disp.completed) {
           res = "[x] " + disp.title;
-        } 
-        else {
+        } else {
           res = "[ ] " + disp.title;
         }
-       // return res
+        // return res
 
-        if (disp.dueDate !==new Date().toISOString())
-      { 
-          ddt=disp.dueDate;
-        } 
-        else {
-          ddt = " "
+        if (disp.dueDate !== new Date().toISOString().slice(0, 10)) {
+          ddt = disp.dueDate;
+        } else {
+          ddt = " ";
         }
-      
-        return res,ddt
-    }).join("\n")
-    }
-  
-    return {
-      all,
-      add,
-      markAsComplete,
-      overdue,
-      dueToday,
-      dueLater,
-      toDisplayableList
-    };
+
+        return res, ddt;
+      })
+      .join("\n");
   };
-  
-  // ####################################### #
-  // DO NOT CHANGE ANYTHING BELOW THIS LINE. #
-  // ####################################### #
-  
-  module.exports=todoList;
+
+  return {
+    all,
+    add,
+    markAsComplete,
+    overdue,
+    dueToday,
+    dueLater,
+    toDisplayableList,
+  };
+};
+
+module.exports = todoList;
