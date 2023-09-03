@@ -15,7 +15,8 @@ Due Later
 */
 /* eslint-disable no-undef */
 const todoList = () => {
-  all = []
+  all = [];
+  today = new Date().toLocaleDateString("en-CA");
   const add = (todoItem) => {
     all.push(todoItem);
   };
@@ -26,32 +27,23 @@ const todoList = () => {
   const overdue = () => {
     // Write the date check condition here and return the array
     // of overdue items accordingly.
-    const x = new Date();
-    return all.filter((od) => {
-      new Date(od.dueDate) < x
-    });
+
+    return all.filter((od) => od.dueDate < today);
   };
 
   const dueToday = () => {
     // Write the date check condition here and return the array
     // of todo items that are due today accordingly.
-    const y = new Date();
-    return all.filter((dt) => {
-      new Date(dt.dueDate) === y;
-    });
+
+    return all.filter((dt) => dt.dueDate === today);
   };
 
   const dueLater = () => {
     // Write the date check condition here and return the array
     // of todo items that are due later accordingly.
-    const z = new Date();
-    return all.filter((dl) => {
-      new Date(dl.dueDate) > z;
-    });
+
+    return all.filter((dl) => dl.dueDate > today);
   };
-
-  
-
 
   const toDisplayableList = (list) => {
     // Format the To-Do list here, and return the output string
@@ -66,7 +58,7 @@ const todoList = () => {
         }
         // return res
 
-        if (disp.dueDate !== new Date().toISOString().slice(0, 10)) {
+        if (disp.dueDate !== today) {
           ddt = disp.dueDate;
         } else {
           ddt = " ";
