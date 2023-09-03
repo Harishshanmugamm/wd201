@@ -32,41 +32,42 @@ describe("Todolist Test Suite",()=>{
    })
 
    test("should show overdue todo",() => {
-    const x= new Date(new Date().setDate(new Date().getDate() - 1))
-    const od = overdue().length
+    const ff= new Date(new Date().setDate(new Date().getDate() - 1))
+    const odu=overdue().length
     add(
       {
-      title: "Yest Rep",
-      dueDate: x.toISOString().slice(0, 10),
+      title: "Submit assignment",
+      dueDate: ff.toISOString().slice(0, 10),
       completed: false,
     }
     )
-
-    expect(overdue().length).toBe(od+1)
+    
+    expect(overdue().length).toBe(odu + 1)
   })
 
 
   test("should show today's todo", () => {
-    const z = new Date();
-    const dt = dueToday().length
+    const mm = new Date()
+    const dtd=dueToday().length
+    
     add({
-      title: "GYM",
-      dueDate: z.toISOString().slice(0, 10),
+      title: "Pay rent",
+      dueDate: mm.toISOString().slice(0, 10),
       completed: true,
     })
-    expect(dueToday().length).toBe(dt + 1)
+    expect(dueToday().length).toBe( dtd+ 1)
   })
 
 
   test("should show due later todo", () => {
-    const nd= new Date(new Date().setDate(new Date().getDate() + 1))
-    const dl = dueLater().length
+    const ndf= new Date(new Date().setDate(new Date().getDate() + 1))
+    const dldd=dueLater().length
     add({
-      title: "Game",
-      dueDate: nd.toISOString().slice(0, 10),
+      title: "Pay electric bill",
+      dueDate: ndf.toISOString().slice(0, 10),
       completed: false,
     })
-    expect(dueLater().length).toBe(dl + 1)
+    expect(dueLater().length).toBe(dldd + 1)
     console.log(all)
   })
 })
