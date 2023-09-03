@@ -53,7 +53,7 @@ describe("Todolist Test Suite", () => {
       dueDate: mmstr,
       completed: true,
     });
-    expect(dueToday().length).toBe(dtd);
+    expect(dueToday().length).toBe(dtd + 1);
     //expect(Object.is(dueToday().length,dtd + 1)).toBe(true)
   });
 
@@ -70,7 +70,7 @@ describe("Todolist Test Suite", () => {
       dueDate: tomstr,
       completed: false,
     });
-    expect(dueLater().length).toBe(dldd);
+    expect(dueLater().length).toBe(dldd+1);
     //expect(Object.is(dueLater().length, dldd + 1)).toBe(true)
     console.log(all);
   });
