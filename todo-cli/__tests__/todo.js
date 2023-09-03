@@ -60,7 +60,7 @@ describe("Todolist Test Suite", () => {
   test("should show due later todo", () => {
     const tod = new Date();
     const tom = new Date(tod);
-    tom.setDate(tod.getDate() - 1);
+    tom.setDate(tod.getDate() + 1);
 
     const tomstr = tom.toISOString().split("T")[0];
 
