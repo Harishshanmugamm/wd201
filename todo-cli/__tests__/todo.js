@@ -42,7 +42,8 @@ describe("Todolist Test Suite",()=>{
     }
     )
     
-    expect(overdue().length).toBe(odu + 1)
+    //expect(overdue().length).toBe(odu + 1)
+   expect(Object.is(overdue().length, odu + 1)).toBe(true)
   })
 
 
@@ -55,7 +56,8 @@ describe("Todolist Test Suite",()=>{
       dueDate: mm.toISOString().slice(0, 10),
       completed: true,
     })
-    expect(dueToday().length).toBe( dtd+ 1)
+    //expect(dueToday().length).toBe( dtd+ 1)
+    expect(Object.is(dueToday().length,dtd + 1)).toBe(true)
   })
 
 
@@ -67,7 +69,8 @@ describe("Todolist Test Suite",()=>{
       dueDate: ndf.toISOString().slice(0, 10),
       completed: false,
     })
-    expect(dueLater().length).toBe(dldd + 1)
+    //expect(dueLater().length).toBe(dldd + 1)
+    expect(Object.is(dueLater().length, dldd + 1)).toBe(true)
     console.log(all)
   })
 })
