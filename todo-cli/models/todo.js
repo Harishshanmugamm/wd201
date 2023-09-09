@@ -87,8 +87,10 @@ module.exports = (sequelize, DataTypes) => {
 
     displayableString() {
       let checkbox = this.completed ? "[x]" : "[ ]";
-      return `${this.id}. ${checkbox} ${this.title} ${this.dueDate}`;
+      let dispDate =this.dueDate === new Date().toLocaleDateString("en-CA") ? "" : this.dueDate;
+      return `${this.id}. ${checkbox} ${this.title} ${dispDate}`.trim();
     }
+    
   }
   Todo.init({
     title: DataTypes.STRING,
