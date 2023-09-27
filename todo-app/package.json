@@ -16,7 +16,7 @@
       "prettier --write ."
     ]
   },
-  "author": "Dhanaselvan <dhana3521@gmail.com>",
+  "author": "hs",
   "license": "ISC",
   "devDependencies": {
     "ejs": "^3.1.9",
