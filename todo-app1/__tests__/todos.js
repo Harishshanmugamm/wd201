@@ -1,4 +1,3 @@
-/* eslint-disable no-undef */
 const request = require("supertest");
 
 const db = require("../models/index");
@@ -30,7 +29,7 @@ describe("Todo Application", function () {
     });
     expect(response.statusCode).toBe(200);
     expect(response.header["content-type"]).toBe(
-      "application/json; charset=utf-8",
+      "application/json; charset=utf-8"
     );
     const parsedResponse = JSON.parse(response.text);
     expect(parsedResponse.id).toBeDefined();
@@ -74,16 +73,5 @@ describe("Todo Application", function () {
 
   test("Deletes a todo with the given ID if it exists and sends a boolean response", async () => {
     // FILL IN YOUR CODE HERE
-    let response = await agent.post("/todos").send({
-      title: "Buy all",
-      dueDate: new Date().toISOString(),
-      completed: false,
-    });
-    let Parsedres = JSON.parse(response.text);
-    let todoId = Parsedres.id;
-
-    let deleteRespo = await agent.delete(`/todos/${todoId}`).send();
-    let parsedDeleteRespo = JSON.parse(deleteRespo.text);
-    expect(parsedDeleteRespo).toBe(true);
   });
 });

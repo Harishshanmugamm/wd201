@@ -1,5 +1,6 @@
+/* eslint-disable no-undef */
 const app = require("./app");
 
-app.listen(5500, () => {
-  console.log("Started express server at port 5500");
+app.listen(3000, () => {
+  console.log("Started express server at port 3000");
 });
