@@ -1,27 +1,8 @@
-
-* {
-  margin: 0;
-  padding: 0;
-  box-sizing:content-box;
+body{
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  background-color:rgb(13, 13, 13);
 }
 
-body {
-  background-color: #a15e5e;
-  font-family:Arial, Helvetica, sans-serif;
-}
-
-header {
-  text-align: center;
-  margin-bottom: 20px;
-}
-
-h1 {
-  font-size: 2em;
-  color: #e14f4f;
-}
-
-footer {
-  text-align: center;
-  margin-top: 30px;
-  color: #4710ab;
+.Todo-Item:hover .trash-icon{
+  display: block;
 }
