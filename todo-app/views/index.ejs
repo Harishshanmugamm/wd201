@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+<!--<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -94,9 +94,49 @@
         </div>
     </div>
 
-    <!-- Bootstrap JS and dependencies -->
     <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.3/dist/umd/popper.min.js"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
+</html>
+
+-->
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Todo List </title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="/css/styles.css">
+</head>
+<body>
+<div class="grid grid-cols-6">
+    <div class="col-start-3 col-span-2">
+        <!--Header Start-->
+        <%- include("header.ejs") %>
+        <!--Header End-->
+        <form >
+            <div class="flex gap-6 grid grid-cols-3">
+                <div class="flex-auto col-start-1 col-span-3">
+                    <input type="text" class="border border-green-400 text-grey-1400 rounded w-full p-3 text-sm w-96" placeholder="What to add next?" required>
+                </div>
+                <div class="flex-auto col-start-1 col-span-2">
+                    <input type="date"class="border border-blue-500  text-grey-400  rounded w-full p-3 text-sm leading-4" required>
+                </div>
+                <div class="flex-none col-start-1">
+                    <button type="submit" class="bg-orange-700 text-white pad px-5 py-3 rounded py-1.5 font-medium mr-2 mb-2 ">Add To Todo</button>
+                </div>
+            </div>
+        </form>
+        <!--Todo Start-->
+        <%- include("todos.ejs") %>
+        <!--Todo End-->
+        <!--Footer Start-->
+        <%- include("footer.ejs") %>
+        <!--Footer End-->
+</div>
 </body>
 </html>
