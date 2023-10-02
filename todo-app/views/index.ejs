@@ -9,16 +9,16 @@
     <link rel="stylesheet" href="/css/styles.css">
     <script>
         var token = document
-        .querySelector('meta[name="csrf-token"]')
+        .querySelector('meta[name="csrf_token"]')
         .getAttribute("content");
         function updateTodo(id){
-            let bool=document.querySelector(`#checkbox-${id}`).checked
-            fetch(`/todos/${id}/markAsCompleted`,{
+            let dec=document.querySelector(`#todo-checkbox-${id}`).checked
+            fetch(`/todos/${id}`,{
                 method:"put",
                 headers:{"Content-Type": "application/json"},
                 body: JSON.stringify({
-                    "_csrf":token,
-                    completed: bool
+                    _csrf:token,
+                    completed: dec
                 })
             })
             .then((res)=>{
@@ -34,7 +34,7 @@
                 method:"delete",
                 headers:{"Content-Type": "application/json"},
                 body: JSON.stringify({
-                    "_csrf":token
+                    _csrf:token
                 })
             })
             .then((res)=>{
@@ -70,7 +70,7 @@
         </form>
         <div>
             <!--Todo Start-->
-            <%- include("todos.ejs",{title:"Overdue", data:overdue , id:"count-overdue"}) %>
+            <%- include("todos.ejs",{title:"Overdue", data:overDue , id:"count-overdue"}) %>
             <%- include("todos.ejs",{title:"Due Today", data:dueToday, id:"count-due-today"}) %>
             <%- include("todos.ejs",{title:"Due Later", data:dueLater, id:"count-due-later"}) %>
             <%- include("todos.ejs",{title:"Completed Items", data:completeditems,id:"count-completed"}) %>

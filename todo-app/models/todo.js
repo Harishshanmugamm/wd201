@@ -1,7 +1,7 @@
 /* eslint-disable no-undef */
 /* eslint-disable no-unused-vars */
 "use strict";
-const { Model } = require("sequelize");
+const { Model, Op } = require("sequelize");
 module.exports = (sequelize, DataTypes) => {
   class Todo extends Model {
     /**
@@ -25,8 +25,8 @@ module.exports = (sequelize, DataTypes) => {
     deletetodo() {
       return this.update({ completed: true });
     }
-    setCompletionStatus(bool){
-      return this.update({completed: bool})
+    setCompletionStatus(bool) {
+      return this.update({ completed: bool });
     }
     static overDue() {
       return this.findAll({
@@ -61,6 +61,7 @@ module.exports = (sequelize, DataTypes) => {
         order: [["id", "ASC"]],
       });
     }
+
     static completeditems() {
       return this.findAll({
         where: {
@@ -69,6 +70,7 @@ module.exports = (sequelize, DataTypes) => {
         order: [["id", "ASC"]],
       });
     }
+
     static async remove(id) {
       return this.destroy({
         where: { id },
