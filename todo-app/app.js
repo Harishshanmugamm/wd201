@@ -1,12 +1,16 @@
 /* eslint-disable no-unused-vars */
 /* eslint-disable no-undef */
 const express = require("express");
+var csrf = require("tiny-csrf");
 const app = express();
 const { Todo } = require("./models");
 const bodyParser = require("body-parser");
-// const path = require("path");
+const cookieParser= require("cookie-parser")
+const path = require("path");
 app.use(bodyParser.json());
 app.use(express.urlencoded({extended: false}))
+app.use(cookieParser("ssh! some secret string"));
+app.use(csrf("this_should_be_32_character_long",["POST","PUT","DELETE"]))
 
 const path = require("path");
 app.use(bodyParser.json());
@@ -22,16 +26,20 @@ app.get("/", async (req, res) => {
   //let completed = await Todo.completed();
   if (req.accepts("html")) {
     res.render("index", {
+      title: "Todo App",
       allTodos,
       overDue,
       dueToday,
       dueLater,
+      completeditems,
+      csrfToken: req.csrfToken(),
     });
   } else {
     res.json({
       overdue,
       dueToday,
       dueLater,
+      completeditems,
     });
   }
 });

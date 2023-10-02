@@ -25,6 +25,9 @@ module.exports = (sequelize, DataTypes) => {
     deletetodo() {
       return this.update({ completed: true });
     }
+    setCompletionStatus(bool){
+      return this.update({completed: bool})
+    }
     static overDue() {
       return this.findAll({
         where: {
@@ -58,7 +61,7 @@ module.exports = (sequelize, DataTypes) => {
         order: [["id", "ASC"]],
       });
     }
-    static completed() {
+    static completeditems() {
       return this.findAll({
         where: {
           completed: true,
