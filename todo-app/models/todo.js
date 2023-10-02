@@ -22,6 +22,55 @@ module.exports = (sequelize, DataTypes) => {
     markAsCompleted() {
       return this.update({ completed: true });
     }
+    deletetodo() {
+      return this.update({ completed: true });
+    }
+    static overDue() {
+      return this.findAll({
+        where: {
+          dueDate: {
+            [Op.lt]: new Date().toLocaleDateString("en-CA"),
+          },
+          completed: false,
+        },
+        order: [["id", "ASC"]],
+      });
+    }
+    static dueToday() {
+      return this.findAll({
+        where: {
+          dueDate: {
+            [Op.eq]: new Date().toLocaleDateString("en-CA"),
+          },
+          completed: false,
+        },
+        order: [["id", "ASC"]],
+      });
+    }
+    static dueLater() {
+      return this.findAll({
+        where: {
+          dueDate: {
+            [Op.gt]: new Date().toLocaleDateString("en-CA"),
+          },
+          completed: false,
+        },
+        order: [["id", "ASC"]],
+      });
+    }
+    static completed() {
+      return this.findAll({
+        where: {
+          completed: true,
+        },
+        order: [["id", "ASC"]],
+      });
+    }
+    static async remove(id) {
+      return this.destroy({
+        where: { id },
+      });
+    }
   }
   Todo.init(
     {
