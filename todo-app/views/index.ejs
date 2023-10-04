@@ -54,6 +54,9 @@
         <!--Header Start-->
         <%- include("header.ejs") %>
         <!--Header End-->
+        <p class="text-white">Welcome to TODO's</p>
+        <p class="text-white">Create New Account <a href="/signup" class="text-orange-700">Sign Up now</a></p>
+        <p class="text-white">Already have an Account? <a href="/login" class="text-orange-700">Login Now</a></p>
         <form action="/todos" method="post">
             <input type="hidden" name="_csrf" value="<%= csrfToken %>">
             <div class="flex gap-6 grid grid-cols-3">
