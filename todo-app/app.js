@@ -48,15 +48,17 @@ passport.use(new LocalStrategy({
   passwordField:'password',
 },(username,password,done)=>{
   User.findOne({where: {email: username}})
-  .then(async (user)=>{
-   
-    const result=await bcrypt.compare(password, user.password)
-    if (result){
-      return done(null,user)
-    }
-    else{
-      return done(null, false, { message: "Invalid password" })
-    }
+  .then(async function (user) { 
+    if (user) { 
+      const resultantPass = await bcrypt.compare(password, user.password); 
+      if (resultantPass) { 
+        return done(null, user); 
+      } else { 
+        return done(null, false, { message: "Invalid Password" }); 
+      } 
+    } else { 
+      return done(null, false, { message: "User Does Not Exist" }); 
+    } 
   }).catch((error)=>{
     return done(error)
   })
@@ -76,7 +78,7 @@ passport.deserializeUser((id,done)=>{
     done(error,null)
   })
 })
-app.set("view engine", "ejs");+
+app.set("view engine", "ejs");
 
 
 app.get("/", async (req, res) => {
@@ -124,6 +126,22 @@ app.get("/signup",(request, response)=>{
   response.render("signup",{ title:"Sign Up", csrfToken: request.csrfToken()})
 })
 app.post("/users",async (request, response)=>{
+  if((request.body.firstName.length == 1) ) {
+    request.flash("error", "Whoops! You haven't entered your First Name!.");
+    return response.redirect("/signup"); }
+
+  if((request.body.lastName.length == 0) || (request.body.lastName.length == 1)) {
+    request.flash("error", "Whoops! You haven't entered your Last Name!.");
+    return response.redirect("/signup"); }
+
+  if((request.body.email.length == 1)){
+    request.flash("error", "Whoops! You haven't entered your Email!.");
+    return response.redirect("/signup"); }
+
+  if((request.body.password.length<6) && !(request.body.password.length > 16)){
+    request.flash("error", "Please check your entered Password : Password must be at least 6 and atmost 16 characters long!.");
+    return response.redirect("/signup"); }
+
   const hashedPwd= await bcrypt.hash(request.body.password, saltRounds)
 
   try{
