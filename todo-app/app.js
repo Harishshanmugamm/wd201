@@ -83,12 +83,16 @@ app.set("view engine", "ejs");
 
 
 app.get("/", async (req, res) => {
+  if(req.isAuthenticated()){
+    return res.redirect("/todos")
+   }
     res.render("index", {
       title: "Todo App",
       csrfToken: req.csrfToken(),
     });
   }
 );
+
 
 app.get("/signout",(request,response,next)=>{
   request.logout((err)=>{
