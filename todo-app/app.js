@@ -253,7 +253,7 @@ app.delete("/todos/:id", connectEnsureLogin.ensureLoggedIn(),async function (req
   console.log("We have to delete a Todo with ID: ", request.params.id);
 
   try {
-    await Todo.remove(request.params.id);
+    await Todo.remove(request.params.id,request.user.id);
     return response.json({ success: true });
   } catch (error) {
     return response.status(422).json(error);
