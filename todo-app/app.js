@@ -50,13 +50,14 @@ passport.use(new LocalStrategy({
   User.findOne({where: {email: username}})
   .then(async function (user) { 
     if (user) { 
-      const resultantPass = await bcrypt.compare(password, user.password); 
-      if (resultantPass) { 
+      const result = await bcrypt.compare(password, user.password); 
+      if (result) { 
         return done(null, user); 
       } else { 
         return done(null, false, { message: "Invalid Password" }); 
       } 
-    } else { 
+    } 
+    else { 
       return done(null, false, { message: "User Does Not Exist" }); 
     } 
   }).catch((error)=>{
@@ -170,13 +171,18 @@ app.get("/login",(request,response)=>{
     csrfToken:request.csrfToken()});
 })
 
-/*app.post("/login",async (request,response)=>{
+app.post("/login",async (request,response)=>{
   try{
     const{email,password}=request.body
-    
+    request.flash("success", `LogIn successfull`);
+    return response.redirect("/todos");
+  }
+  catch(error){
+    request.flash("error", "Session is not Active please login again");
+    response.redirect("/login");
   }
 })
-*/
+
 app.post("/session",passport.authenticate('local',{
   failureRedirect:"/login",
    failureFlash: true,
